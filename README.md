@@ -42,7 +42,7 @@ limitations under the License.
 ## Usage
 
 ```javascript
-import isCentrosymmetricMatrix from 'https://cdn.jsdelivr.net/gh/stdlib-js/assert-is-centrosymmetric-matrix@esm/index.mjs';
+import isCentrosymmetricMatrix from 'https://cdn.jsdelivr.net/gh/stdlib-js/assert-is-centrosymmetric-matrix@v0.1.0-esm/index.mjs';
 ```
 
 #### isCentrosymmetricMatrix( value )
@@ -82,7 +82,7 @@ var bool = isCentrosymmetricMatrix( arr );
 <script type="module">
 
 import ndarray from 'https://cdn.jsdelivr.net/gh/stdlib-js/ndarray-ctor@esm/index.mjs';
-import isCentrosymmetricMatrix from 'https://cdn.jsdelivr.net/gh/stdlib-js/assert-is-centrosymmetric-matrix@esm/index.mjs';
+import isCentrosymmetricMatrix from 'https://cdn.jsdelivr.net/gh/stdlib-js/assert-is-centrosymmetric-matrix@v0.1.0-esm/index.mjs';
 
 var arr = ndarray( 'generic', [ 2, 1, 1, 2 ], [ 2, 2 ], [ 2, 1 ], 0, 'row-major' );
 
