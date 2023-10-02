@@ -1,7 +1,7 @@
-/**
+/*
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2021 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,16 +16,11 @@
 * limitations under the License.
 */
 
-'use strict';
+// TypeScript Version: 4.1
 
-// MODULES //
+/// <reference types="https://cdn.jsdelivr.net/gh/stdlib-js/types@main/index.d.ts"/>
 
-var isSquareMatrix = require( '@stdlib/assert-is-square-matrix' );
-var floor = require( '@stdlib/math-base-special-floor' );
-var isOdd = require( '@stdlib/math-base-assert-is-odd' );
-
-
-// MAIN //
+import { ndarray } from '@stdlib/types/ndarray';
 
 /**
 * Tests if a value is a centrosymmetric matrix.
@@ -35,11 +30,11 @@ var isOdd = require( '@stdlib/math-base-assert-is-odd' );
 * -   The implementation must rely on manually checking that \\(M_{ij} = M_{N-i-1,N-j-1}\\), and, while element access is deterministic, no way exists to prevent cache misses outside of reordering the underlying matrix elements, thus incurring a larger performance penalty than just "jumping around" in a single pass.
 * -   Worst case scenario: O(N^2).
 *
-* @param {*} v - value to test
-* @returns {boolean} boolean indicating if a value is a centrosymmetric matrix
+* @param v - value to test
+* @returns boolean indicating if a value is a centrosymmetric matrix
 *
 * @example
-* var ndarray = require( '@stdlib/ndarray-ctor' );
+* var ndarray = require( `@stdlib/ndarray/ctor` );
 *
 * var arr = ndarray( 'generic', [ 2, 1, 1, 2 ], [ 2, 2 ], [ 2, 1 ], 0, 'row-major' );
 *
@@ -49,39 +44,9 @@ var isOdd = require( '@stdlib/math-base-assert-is-odd' );
 * bool = isCentrosymmetricMatrix( [] );
 * // returns false
 */
-function isCentrosymmetricMatrix( v ) {
-	var m1;
-	var M;
-	var N;
-	var n;
-	var i;
-	var j;
-	if ( !isSquareMatrix( v ) ) {
-		return false;
-	}
-	M = v.shape[ 0 ];
-	N = floor( M/2.0 ); // corresponds to a row index + 1
-	m1 = M - 1;
-	for ( i = 0; i < N; i++ ) {
-		n = m1 - i;
-		for ( j = 0; j < M; j++ ) {
-			if ( v.get( i, j ) !== v.get( n, m1-j ) ) {
-				return false;
-			}
-		}
-	}
-	if ( isOdd( M ) ) {
-		// Only need to examine the first half of the row (up until the center element) due to symmetry...
-		for ( j = 0; j < N; j++ ) {
-			if ( v.get( i, j ) !== v.get( N, m1-j ) ) {
-				return false;
-			}
-		}
-	}
-	return true;
-}
+declare function isCentrosymmetricMatrix( v: any ): v is ndarray;
 
 
 // EXPORTS //
 
-module.exports = isCentrosymmetricMatrix;
+export = isCentrosymmetricMatrix;
